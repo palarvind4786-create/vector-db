@@ -1,0 +1,69 @@
+{
+  "metadata": {
+    "num_vectors": 50000,
+    "num_queries": 500,
+    "k": 10,
+    "dim": 384,
+    "nlist": 100,
+    "nprobes_evaluated": [
+      1,
+      5,
+      10
+    ],
+    "timestamp": "2026-09-08 09:30:03"
+  },
+  "records": [
+    {
+      "name": "ExactIndex (Brute Force)",
+      "index_type": "Exact",
+      "nprobe": null,
+      "recall_at_10": 1.0,
+      "avg_latency_ms": 4.3408166,
+      "p50_latency_ms": 4.2158,
+      "p95_latency_ms": 5.66219,
+      "p99_latency_ms": 6.906441,
+      "avg_candidates": 50000.0,
+      "pct_examined": 100.0,
+      "speedup": 1.0
+    },
+    {
+      "name": "IVF-Flat (nprobe=1)",
+      "index_type": "IVF-Flat",
+      "nprobe": 1,
+      "recall_at_10": 0.649,
+      "avg_latency_ms": 0.35220100000000004,
+      "p50_latency_ms": 0.24185,
+      "p95_latency_ms": 0.8042849999999995,
+      "p99_latency_ms": 1.2319079999999993,
+      "avg_candidates": 573.59,
+      "pct_examined": 1.14718,
+      "speedup": 12.324827584248766
+    },
+    {
+      "name": "IVF-Flat (nprobe=5)",
+      "index_type": "IVF-Flat",
+      "nprobe": 5,
+      "recall_at_10": 0.8976000000000002,
+      "avg_latency_ms": 2.3344722,
+      "p50_latency_ms": 2.1607000000000003,
+      "p95_latency_ms": 3.74892,
+      "p99_latency_ms": 4.572309999999999,
+      "avg_candidates": 2681.294,
+      "pct_examined": 5.362588,
+      "speedup": 1.8594424041545665
+    },
+    {
+      "name": "IVF-Flat (nprobe=10)",
+      "index_type": "IVF-Flat",
+      "nprobe": 10,
+      "recall_at_10": 0.9466,
+      "avg_latency_ms": 4.614058,
+      "p50_latency_ms": 4.2957,
+      "p95_latency_ms": 7.173679999999998,
+      "p99_latency_ms": 8.155061999999996,
+      "avg_candidates": 5244.732,
+      "pct_examined": 10.489464,
+      "speedup": 0.9407806750587011
+    }
+  ]
+}

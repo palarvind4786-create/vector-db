@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vector Database From Scratch</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo-section">
+            <span class="logo-icon">⚡</span>
+            <h1>Vector Database <span class="badge-tag">From Scratch</span></h1>
+        </div>
+        <div class="header-status">
+            <span class="status-indicator"></span>
+            <span id="collection-status">Engine: Ready (Pure NumPy)</span>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <!-- Control & Search Section -->
+        <section class="card search-card">
+            <h2>Semantic Vector Search</h2>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Enter query text (e.g. 'astronomy and space exploration')...">
+                <button id="search-btn" class="btn btn-primary">Search</button>
+            </div>
+
+            <div class="search-options">
+                <div class="option-group">
+                    <label>Index Mode:</label>
+                    <div class="toggle-group">
+                        <button class="toggle-btn active" data-index="ivf">IVF-Flat (ANN)</button>
+                        <button class="toggle-btn" data-index="exact">Exact (Brute-force)</button>
+                        <button class="toggle-btn" data-index="compare">Side-by-Side</button>
+                    </div>
+                </div>
+
+                <div class="option-group" id="nprobe-group">
+                    <label for="nprobe-slider">nprobe (Clusters Probed): <span id="nprobe-val">8</span></label>
+                    <input type="range" id="nprobe-slider" min="1" max="100" value="8">
+                </div>
+
+                <div class="option-group">
+                    <label for="top-k-input">Top-K:</label>
+                    <input type="number" id="top-k-input" min="1" max="50" value="10">
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Results / Comparison Section -->
+        <section class="card results-card" id="results-container">
+            <div class="results-header">
+                <h2>Query Results</h2>
+                <div class="metrics-summary" id="metrics-summary">
+                    <span class="metric-pill">Latency: <strong id="metric-latency">-- ms</strong></span>
+                    <span class="metric-pill">Vectors Examined: <strong id="metric-scanned">--</strong></span>
+                    <span class="metric-pill">Recall vs Exact: <strong id="metric-recall">--%</strong></span>
+                </div>
+            </div>
+            <div id="results-list" class="results-list">
+                <p class="placeholder-text">Execute a search to view matching documents and similarity scores.</p>
+            </div>
+        </section>
+
+        <!-- Cluster Inspector Section -->
+        <section class="card cluster-card">
+            <h2>IVF Cluster Distribution Inspector</h2>
+            <p class="section-desc">Visualizes how indexed vectors are partitioned across Voronoi cell posting lists.</p>
+            <div id="cluster-chart" class="cluster-chart-container">
+                <p class="placeholder-text">Cluster visualization loads upon index training.</p>
+            </div>
+        </section>
+
+        <!-- Benchmark Suite Section -->
+        <section class="card benchmark-card">
+            <div class="benchmark-header">
+                <h2>Evaluation & Benchmark Suite (500 Queries)</h2>
+                <button id="run-bench-btn" class="btn btn-secondary">Run Benchmark Suite</button>
+            </div>
+            <p class="section-desc">Measures Recall@10, Mean/P50/P95/P99 latencies, and speedup vs Exact ground truth.</p>
+            <div id="benchmark-results" class="benchmark-results-container">
+                <p class="placeholder-text">Click "Run Benchmark Suite" to evaluate.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>Built with Pure NumPy & FastAPI &bull; No external vector DB or ANN libraries.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
